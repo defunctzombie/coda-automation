@@ -28,10 +28,25 @@ scrape_configs:
 
     static_configs:
       - targets: ['localhost:9090']
+
+  - job_name: 'coda-us-west-2'
+    ec2_sd_configs:
+      - region: us-west-2
+        port: 10000
+    relabel_configs: 
+      # Only monitor instances with a tag module = coda-node
+      - source_labels: [__meta_ec2_tag_module]
+        regex: coda-node
+        action: keep
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance
+    
+{% if CODA_METRICS_URI is defined %}
   - job_name: "coda"
     scrape_interval: "10s"
     static_configs:
       - targets: ['{{ CODA_METRICS_URI }}']
+{% endif %}
 {% if FAUCET_METRICS_URI is defined %}
   - job_name: "faucet"
     scrape_interval: "10s"
