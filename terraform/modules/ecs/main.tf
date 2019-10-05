@@ -1,5 +1,4 @@
 locals {
-  # This is the convention we use to know what belongs to each other
   ec2_resources_name = "${var.name}-${var.environment}"
 }
 
