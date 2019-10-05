@@ -1,5 +1,5 @@
 locals {
-  service_name  = "daemon-${var.testnet}-${var.daemon_number}"
+  service_name  = "daemon-${var.environment}-${var.testnet}-${var.daemon_number}"
 }
 
 

@@ -9,6 +9,17 @@ variable "environment" {
   default = "dev"
 }
 
+variable "testnet" {
+  description = "The testnet that this daemon is connected to"
+  type        = string
+}
+
+variable "daemon_number" {
+  description = "A unique value that is not shared with another deployed daemon"
+  type        = string
+  default = "dev"
+}
+
 variable "container_version" {
   description = "The version of the container to be used when deploying the Faucet Service"
   type        = string
